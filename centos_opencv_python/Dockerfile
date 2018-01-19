@@ -1,13 +1,16 @@
 FROM centos:7.4.1708
 RUN yum install -y git
 
+RUN yum groupinstall -y "Development Tools"
+
 RUN yum install -y epel-release
+
 RUN yum install -y python34 python34-devel python34-setuptools
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && /usr/bin/python3.4 get-pip.py && rm get-pip.py
 
 RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout 3.3.0 \
     && git clone https://github.com/Itseez/opencv_contrib.git && cd opencv_contrib && git checkout 3.3.0
-    
+
 RUN cd opencv && mkdir build && cd build && cmake \
     -D BUILD_EXAMPLES=OFF \
     -D BUILD_DOCS=OFF \
@@ -27,5 +30,7 @@ RUN cd opencv && mkdir build && cd build && cmake \
     .. && \
     make -j8 && \
     make install
+
+RUN ln -s /usr/local/lib/python3.4/site-packages/cv2.cpython-34m.so /usr/lib64/python3.4/site-packages/cv2.so
 
 CMD ["python3"]
