@@ -5,7 +5,10 @@ RUN yum groupinstall -y "Development Tools"
 
 RUN yum install -y epel-release
 
-RUN yum install -y python34 python34-devel python34-setuptools
+RUN yum install -y python34 
+RUN yum install -y python34-devel
+RUN yum install -y python34-setuptools
+
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && /usr/bin/python3.4 get-pip.py && rm get-pip.py
 
 RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout 3.3.0 \
