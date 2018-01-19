@@ -17,8 +17,8 @@ RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout 
     && git clone https://github.com/Itseez/opencv_contrib.git && cd opencv_contrib && git checkout 3.3.0
 
 # INSTALL OPENCV
-ENV OPENCV_VERSION="3.4.0"
-# ENV OPENCV_VERSION="3.3.0"
+# ENV OPENCV_VERSION="3.4.0"
+ENV OPENCV_VERSION="3.3.0"
 RUN yum install -y cmake git pkgconfig
 RUN yum install -y libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel
 RUN yum install -y libdc1394-devel libv4l-devel gstreamer-plugins-base-devel
