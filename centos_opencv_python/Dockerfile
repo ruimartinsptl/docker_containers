@@ -1,9 +1,10 @@
 FROM centos:7.4.1708
-RUN yum install -y git
+
+RUN yum install -y epel-release
 
 RUN yum groupinstall -y "Development Tools"
 
-RUN yum install -y epel-release
+
 
 RUN yum install -y python34 
 RUN yum install -y python34-devel
@@ -13,12 +14,15 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && /usr/bin/python3.4 get-pip.p
 
 RUN pip3 install numpy==1.13.3
 
-RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout 3.3.0 && cd .. \
-    && git clone https://github.com/Itseez/opencv_contrib.git && cd opencv_contrib && git checkout 3.3.0
+
 
 # INSTALL OPENCV
 # ENV OPENCV_VERSION="3.4.0"
 ENV OPENCV_VERSION="3.3.0"
+
+RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout ${OPENCV_VERSION} && cd .. \
+    && git clone https://github.com/Itseez/opencv_contrib.git && cd opencv_contrib && git checkout ${OPENCV_VERSION}
+    
 RUN yum install -y cmake git pkgconfig
 RUN yum install -y libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel
 RUN yum install -y libdc1394-devel libv4l-devel gstreamer-plugins-base-devel
