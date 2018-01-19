@@ -8,9 +8,10 @@ RUN yum install -y epel-release
 RUN yum install -y python34 
 RUN yum install -y python34-devel
 RUN yum install -y python34-setuptools
-RUN pip3 install numpy==1.13.3
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && /usr/bin/python3.4 get-pip.py && rm get-pip.py
+
+RUN pip3 install numpy==1.13.3
 
 RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout 3.3.0 \
     && git clone https://github.com/Itseez/opencv_contrib.git && cd opencv_contrib && git checkout 3.3.0
