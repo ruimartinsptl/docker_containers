@@ -11,6 +11,12 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && /usr/bin/python3.4 get-pip.p
 RUN git clone https://github.com/Itseez/opencv.git && cd opencv && git checkout 3.3.0 \
     && git clone https://github.com/Itseez/opencv_contrib.git && cd opencv_contrib && git checkout 3.3.0
 
+RUN yum install -y cmake git pkgconfig
+RUN yum install -y libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel
+RUN yum install -y libdc1394-devel libv4l-devel gstreamer-plugins-base-devel
+RUN yum install -y python-devel
+RUN yum install -y tbb-devel
+RUN yum install -y eigen3-devel
 RUN cd opencv && mkdir build && cd build && cmake \
     -D BUILD_EXAMPLES=OFF \
     -D BUILD_DOCS=OFF \
